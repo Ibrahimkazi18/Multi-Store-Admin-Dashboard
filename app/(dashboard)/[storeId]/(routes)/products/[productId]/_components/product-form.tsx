@@ -38,6 +38,7 @@ const formSchema = z.object({
   size : z.string().optional(),
   kitchen : z.string().optional(),
   cuisine : z.string().optional(),
+  description : z.string().min(1),
 })
 
 const ProductForm = ({ initialData, categories, sizes, kitchens, cuisines } : ProductFormProps) => {
@@ -54,6 +55,7 @@ const ProductForm = ({ initialData, categories, sizes, kitchens, cuisines } : Pr
       size: "",
       kitchen: "",
       cuisine: "",
+      description: "",
     }
   })
 
@@ -180,6 +182,19 @@ const ProductForm = ({ initialData, categories, sizes, kitchens, cuisines } : Pr
                         <FormLabel>Price</FormLabel>
                         <FormControl>
                             <Input type="number" disabled={isLoading} placeholder="0" {...field} />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+              )}
+              />
+              <FormField
+                  control={form.control}
+                  name="description"
+                  render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>Description</FormLabel>
+                        <FormControl>
+                            <Input disabled={isLoading} placeholder="Product description..." {...field} />
                         </FormControl>
                         <FormMessage />
                       </FormItem>

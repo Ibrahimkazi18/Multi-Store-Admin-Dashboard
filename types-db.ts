@@ -61,6 +61,7 @@ export interface Product {
     size : string,
     kitchen : string,
     cuisine : string,
+    description : string,
     createdAt?: Timestamp,
     updatedAt?: Timestamp,
 }

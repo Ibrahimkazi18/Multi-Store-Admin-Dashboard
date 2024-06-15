@@ -15,7 +15,7 @@ export const PATCH = async (req : Request, {params} : {params : {storeId : strin
             return new NextResponse("Unauthorized", {status: 400})
         }
 
-        const {name, price, images, isFeatured, isArchived, category, size, kitchen, cuisine} = body;
+        const {name, price, images, isFeatured, isArchived, category, size, kitchen, cuisine, description} = body;
 
         if(!name){
             return new NextResponse("Product Name is missing", {status: 400})  
@@ -67,6 +67,7 @@ export const PATCH = async (req : Request, {params} : {params : {storeId : strin
                     size, 
                     kitchen, 
                     cuisine,
+                    description,
                     updatedAt : serverTimestamp(),
                 }
             )

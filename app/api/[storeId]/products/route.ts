@@ -14,7 +14,7 @@ export const POST = async (req : Request, {params} : {params : {storeId : string
             return new NextResponse("Unauthorized", {status: 400})
         }
 
-        const {name, price, images, isFeatured, isArchived, category, size, kitchen, cuisine} = body;
+        const {name, price, images, isFeatured, isArchived, category, size, kitchen, cuisine, description} = body;
 
         if(!name){
             return new NextResponse("Product Name is missing", {status: 400})  
@@ -55,6 +55,7 @@ export const POST = async (req : Request, {params} : {params : {storeId : string
             size, 
             kitchen, 
             cuisine,
+            description,
             createdAt: serverTimestamp(),
         }
 
@@ -119,6 +120,10 @@ export const GET = async (req : Request, {params} : {params : {storeId : string}
 
         if(searchParams.has("isArchived")){
             queryConstraints.push(where("isArchived", "==", searchParams.get("isArchived") === "true" ? true : false))
+        }
+
+        if(searchParams.has("description")){
+            queryConstraints.push(where("description", "==", searchParams.get("description")))
         }
 
         if(queryConstraints.length > 0) {
